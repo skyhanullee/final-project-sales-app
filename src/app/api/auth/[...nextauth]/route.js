@@ -4,7 +4,6 @@ import NextAuth from 'next-auth/next';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcrypt';
 
-// Define the path to the JSON file containing user data
 const filePath = path.join(process.cwd(), 'public', 'data', 'users.json');
 
 export const authOptions = {
@@ -15,32 +14,39 @@ export const authOptions = {
 
       async authorize(credentials) {
         const { name, password } = credentials;
-
+      
         try {
-          // read the JSON file
+          console.log(`Attempting to authenticate user: ${name}`);
+          
+          // Read the JSON file
           const jsonData = await fs.readFile(filePath, 'utf8');
           const users = JSON.parse(jsonData);
-
-          // find the user by name
-          const user = users.find((u) => u.name === name);
-
+          console.log('Users loaded from JSON:', users);
+      
+          // Find the user by name
+          const user = users.find((user) => user.name === name);
           if (!user) {
+            console.log('User not found');
             return null;
           }
-
-          // compare the input password with the hashed password
+      
+          console.log('User found:', user);
+      
+          // Compare the input password with the hashed password
           const passwordsMatch = await bcrypt.compare(password, user.password);
-
           if (!passwordsMatch) {
+            console.log('Password mismatch');
             return null;
           }
-
+      
+          console.log('Password match successful');
           return user;
         } catch (e) {
-          console.log('Error:', e);
+          console.log('Error during authentication:', e);
           return null;
         }
-      },
+      }
+      ,
     }),
   ],
   callbacks: {
@@ -59,7 +65,7 @@ export const authOptions = {
   },
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
-    signIn: '/',
+    signIn: '/home',
   },
 };
 

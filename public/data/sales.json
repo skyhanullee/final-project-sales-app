@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "dateValue": "2024-08-01",
+    "foodValue": "123",
+    "electronicsValue": "123",
+    "clothesValue": "123",
+    "drinksValue": "123",
+    "totalValue": 492,
+    "username": "test1"
+  }
+]

@@ -9,6 +9,9 @@
   .heading {
     @apply font-bold text-3xl text-center p-4 text-gray-300;
   }
+  .paragraph {
+    @apply text-xl text-center p-2 text-gray-300;
+  }
   .main-container {
     @apply max-w-5xl mx-auto;
   }

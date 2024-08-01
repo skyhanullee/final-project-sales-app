@@ -6,12 +6,10 @@ import { useSession } from "next-auth/react";
 
 export default function DailyForm() {
   const [dateValue, setDateValue] = useState();
-  const [nonTaxValue, setNonTaxValue] = useState(0);
-  const [taxValue, setTaxValue] = useState(0);
-  const [lottoValue, setLottoValue] = useState(0);
-  const [paidValue, setPaidValue] = useState(0);
-  const [cashValue, setCashValue] = useState(0);
-  const [cardValue, setCardValue] = useState(0);
+  const [foodValue, setFoodValue] = useState(0);
+  const [electronicsValue, setElectronicsValue] = useState(0);
+  const [clothesValue, setClothesValue] = useState(0);
+  const [drinksValue, setDrinksValue] = useState(0);
 
   const router = useRouter();
 
@@ -20,33 +18,23 @@ export default function DailyForm() {
   const onFormSubmit = async (e) => {
     e.preventDefault();
 
-    if (!nonTaxValue) {
-      alert("Non Tax value is missing.");
+    if (!foodValue) {
+      alert("Food value is missing.");
       return;
     }
 
-    if (!taxValue) {
-      alert("Tax value is missing.");
+    if (!electronicsValue) {
+      alert("Electronics value is missing.");
       return;
     }
 
-    if (!lottoValue) {
-      alert("Lotto value is missing.");
+    if (!clothesValue) {
+      alert("Clothes value is missing.");
       return;
     }
 
-    if (!paidValue) {
-      alert("Paid value is missing.");
-      return;
-    }
-
-    if (!cashValue) {
-      alert("Cash value is missing.");
-      return;
-    }
-
-    if (!cardValue) {
-      alert("Card value is missing.");
+    if (!drinksValue) {
+      alert("Drinks value is missing.");
       return;
     }
 
@@ -56,31 +44,29 @@ export default function DailyForm() {
     }
 
     const totalValue =
-      parseFloat(cashValue) +
-      parseFloat(cardValue) +
-      parseFloat(paidValue) -
-      parseFloat(lottoValue);
-    console.log(cashValue, cardValue, paidValue, lottoValue);
+      parseFloat(clothesValue) +
+      parseFloat(drinksValue) +
+      parseFloat(foodValue) +
+      parseFloat(electronicsValue);
+      console.log(clothesValue, drinksValue, electronicsValue, foodValue);
     console.log(`Total: ${totalValue}, ${typeof totalValue}`);
 
-    const userId = session?.user?.id;
+    const username = session?.user?.name;
 
     try {
-      const res = await fetch("http://localhost:3000/api/dailysales", {
+      const res = await fetch("/api/dailysales", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
         },
         body: JSON.stringify({
           dateValue,
-          nonTaxValue,
-          taxValue,
-          lottoValue,
-          paidValue,
-          cashValue,
-          cardValue,
+          foodValue,
+          electronicsValue,
+          clothesValue,
+          drinksValue,
           totalValue,
-          userId,
+          username,
         }),
       });
 
@@ -97,12 +83,7 @@ export default function DailyForm() {
       }
     } catch (e) {
       console.log(e);
-      // console.dir(e);
     }
-
-    // console.log(nonTaxValue);
-    // setNonTaxValue();
-    // router.push("/");
   };
 
   return (
@@ -114,12 +95,10 @@ export default function DailyForm() {
           value={dateValue}
           setValue={setDateValue}
         />
-        <FormInput type="number" name="Non Tax" setValue={setNonTaxValue} />
-        <FormInput type="number" name="Tax" setValue={setTaxValue} />
-        <FormInput type="number" name="Lotto" setValue={setLottoValue} />
-        <FormInput type="number" name="Paid" setValue={setPaidValue} />
-        <FormInput type="number" name="Cash" setValue={setCashValue} />
-        <FormInput type="number" name="Card" setValue={setCardValue} />
+        <FormInput type="number" name="Food" setValue={setFoodValue} />
+        <FormInput type="number" name="Electronics" setValue={setElectronicsValue} />
+        <FormInput type="number" name="Clothes" setValue={setClothesValue} />
+        <FormInput type="number" name="Drinks" setValue={setDrinksValue} />
         <input
           type="submit"
           value="Submit"

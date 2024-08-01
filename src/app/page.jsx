@@ -14,7 +14,8 @@ export default async function Home() {
 
   return (
     <main className="main-container">
-      <h1 className="heading">Home</h1>
+      <h1 className="heading">Welcome to Sales App!</h1>
+      <p className="paragraph">As a manager or a store owner, you can record your daily sales and keep track of your invoices!</p>
       <LoginForm />
     </main>
   )
