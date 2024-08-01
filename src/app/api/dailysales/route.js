@@ -39,6 +39,7 @@ export async function POST(req) {
 
     // Generate a new ID for the new sale
     const newId = dailySales.length ? Math.max(dailySales.map(sale => sale.id)) + 1 : 1;
+    console.log(Math.max(dailySales.map(sale => sale.id)) + 1)
     
     // Create a new sale record
     const newSale = {

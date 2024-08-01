@@ -4,12 +4,10 @@ import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 
-// Define the path to the JSON file containing daily sales data
 const filePath = path.join(process.cwd(), 'public', 'data', 'sales.json');
 
 const getDailySales = async () => {
   try {
-    // Get session information to identify the user
     const session = await getServerSession(authOptions);
 
     if (!session) {
@@ -18,11 +16,9 @@ const getDailySales = async () => {
 
     const userId = session.user.id;
 
-    // Read the daily sales data from the JSON file
     const jsonData = await fs.readFile(filePath, 'utf-8');
     const dailySales = JSON.parse(jsonData);
 
-    // Filter sales data by user ID
     const userSales = dailySales.filter(sale => sale.userId === userId);
 
     return { dailySales: userSales };

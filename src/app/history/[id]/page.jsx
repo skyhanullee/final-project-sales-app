@@ -3,17 +3,13 @@ import path from 'path';
 import Link from "next/link";
 import RemoveButton from "../../components/RemoveButton";
 
-// Define the path to the JSON file containing daily sales data
 const filePath = path.join(process.cwd(), 'public', 'data', 'sales.json');
 
-// Fetch the daily sale data by ID from the JSON file
 const getDailySalesById = async (id) => {
   try {
-    // Read the daily sales data from the JSON file
     const jsonData = await fs.readFile(filePath, 'utf-8');
     const dailySales = JSON.parse(jsonData);
 
-    // Find the sale by ID
     const dailySale = dailySales.find(sale => sale.id === parseInt(id, 10));
     if (!dailySale) {
       throw new Error("Sale not found");
