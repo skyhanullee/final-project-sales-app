@@ -46,12 +46,13 @@ export default async function DailySalesInfo({ params }) {
     <main className="main-container">
       <section className="flex flex-row items-center justify-center">
         <h1 className="heading">Info</h1>
-        <Link href={`/editdailysales/${id}`} className="text-xl p-4 m-6 border-2 rounded-lg text-gray-300 border-gray-300 flex flex-row justify-around gap-8">
+        {/* <Link href={`/editdailysales/${id}`} className="text-xl p-4 m-6 border-2 rounded-lg text-gray-300 border-gray-300 flex flex-row justify-around gap-8">
           Edit
-        </Link>
+        </Link> */}
       </section>
-      <section className="max-w-lg mx-auto border-2 rounded-lg">
-        <table className="table-fixed w-full text-gray-300 border-gray-300">
+      <section className="max-w-lg mx-auto">
+      <p className="paragraph pt-8">This page contains a specific day's sales data.</p>
+        <table className="table-fixed w-full text-gray-300 border-gray-300 rounded-lg">
           <tbody>
             <tr>
               <td className="px-6 py-4 text-2xl border">Date:</td>
@@ -80,8 +81,7 @@ export default async function DailySalesInfo({ params }) {
           </tbody>
         </table>
       </section>
-      <p className="paragraph pt-8">This page contains a specific day's sales data.</p>
-      <p className="paragraph">Click <strong>Edit</strong> if you want to edit or update the records.</p>
+      {/* <p className="paragraph">Click <strong>Edit</strong> if you want to edit or update the records.</p> */}
     </main>
   );
 }
