@@ -41,6 +41,9 @@ export default async function DailySalesInfo({ params }) {
   return (
     <main className="main-container">
       <section className="flex flex-row items-center justify-center">
+        <Link href="/history" className="btn absolute left-0 ml-4 md:ml-12 lg:ml-16">
+          Back to History
+        </Link>
         <h1 className="heading">Info</h1>
         {/* <Link href={`/editdailysales/${id}`} className="text-xl p-4 m-6 border-2 rounded-lg text-gray-300 border-gray-300 flex flex-row justify-around gap-8">
           Edit

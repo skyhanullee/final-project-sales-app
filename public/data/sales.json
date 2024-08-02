@@ -1,12 +1,12 @@
 [
   {
     "id": 1,
-    "dateValue": "2024-08-02",
-    "foodValue": "123",
-    "electronicsValue": "123",
-    "clothesValue": "123",
-    "drinksValue": "123",
-    "totalValue": 492,
+    "dateValue": "2024-08-01",
+    "foodValue": "100",
+    "electronicsValue": "100",
+    "clothesValue": "100",
+    "drinksValue": "100",
+    "totalValue": 400,
     "username": "test1"
   }
 ]

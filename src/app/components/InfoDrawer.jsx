@@ -18,7 +18,7 @@ export default function InfoDrawer({ onClose, drawerContent }) {
           </p>
           <button
             onClick={onClose}
-            className="text-blue-500 hover:underline"
+            className="btn"
           >
             Close
           </button>

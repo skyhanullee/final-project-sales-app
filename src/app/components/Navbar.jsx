@@ -13,6 +13,9 @@ export default function Navbar() {
       <Link href="/createdailysales">
         New Sales
       </Link>
+      <Link href="/help">
+        Help
+      </Link>
     </nav>
   )
 }
