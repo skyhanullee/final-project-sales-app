@@ -2,6 +2,7 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import Link from "next/link";
 import RemoveButton from "../../components/RemoveButton";
+import GeneratePdfButton from '@/app/components/GeneratePdfButton';
 
 const filePath = path.join(process.cwd(), 'public', 'data', 'sales.json');
 
@@ -37,6 +38,14 @@ export default async function DailySalesInfo({ params }) {
 
   const { dateValue, foodValue, electronicsValue, clothesValue, drinksValue, totalValue } = dailySale;
   const formattedDate = new Date(dateValue).toLocaleDateString('en-US', { timeZone: 'UTC' });
+
+  const pdfContent = `
+    Food: ${foodValue}
+    Electronics: ${electronicsValue}
+    Clothes: ${clothesValue}
+    Drinks: ${drinksValue}
+    Total: ${totalValue}
+  `
 
   return (
     <main className="main-container">
@@ -81,6 +90,7 @@ export default async function DailySalesInfo({ params }) {
         </table>
       </section>
       {/* <p className="paragraph">Click <strong>Edit</strong> if you want to edit or update the records.</p> */}
+      <GeneratePdfButton title={formattedDate} content={pdfContent}/>
     </main>
   );
 }

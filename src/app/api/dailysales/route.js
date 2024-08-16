@@ -4,11 +4,21 @@ import { NextResponse } from 'next/server';
 
 const filePath = path.join(process.cwd(), 'public', 'data', 'sales.json');
 
+function logWithTimestamp(message, data) {
+  const timestamp = new Date().toISOString();
+  console.log(`[${timestamp}] ${message}`);
+}
+
 async function readDailySales() {
   try {
     const data = await fs.readFile(filePath, 'utf-8');
-    console.log(data)
-    return JSON.parse(data);
+    logWithTimestamp('Read data from file:');
+    const sales = JSON.parse(data);
+    logWithTimestamp('Parsed sales data:');
+    return sales.map(sale => ({
+      ...sale,
+      id: sale.id ? Number(sale.id) : null
+    }));
   } catch (e) {
     console.error('Error reading daily sales file:', e);
   }
@@ -16,7 +26,13 @@ async function readDailySales() {
 
 async function writeDailySales(dailySales) {
   try {
-    await fs.writeFile(filePath, JSON.stringify(dailySales, null, 2), 'utf-8');
+    // Convert all ids to numbers before writing
+    const salesToWrite = dailySales.map(sale => ({
+      ...sale,
+      id: Number(sale.id),
+    }));
+    logWithTimestamp('Preparing to write sale:', salesToWrite);
+    await fs.writeFile(filePath, JSON.stringify(salesToWrite, null, 2), 'utf-8');
   } catch (e) {
     console.error('Error writing daily sales file:', e);
   }
@@ -25,11 +41,12 @@ async function writeDailySales(dailySales) {
 export async function POST(req) {
   try {
     const { dateValue, foodValue, electronicsValue, clothesValue, drinksValue, totalValue, username } = await req.json();
-    console.log(dateValue, foodValue, electronicsValue, clothesValue, drinksValue, totalValue, username)
+    // console.log(dateValue, foodValue, electronicsValue, clothesValue, drinksValue, totalValue, username)
     if (!dateValue || !username || totalValue === undefined) {
       return NextResponse.json({ message: "Missing required fields" }, { status: 400 });
     }
     const dailySales = await readDailySales();
+    console.log(dailySales)
 
     // Check for duplicate entries
     const existingDate = dailySales.find(sale => sale.dateValue === dateValue && sale.username === username);
@@ -38,8 +55,8 @@ export async function POST(req) {
     }
 
     // Generate a new ID for the new sale
-    const newId = dailySales.length ? Math.max(dailySales.map(sale => sale.id)) + 1 : 1;
-    console.log(Math.max(dailySales.map(sale => sale.id)) + 1)
+    const newId = dailySales.length ? Math.max(...dailySales.map(sale => sale.id)) + 1 : 1;
+    console.log(newId)
     
     // Create a new sale record
     const newSale = {

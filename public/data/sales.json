@@ -8,5 +8,65 @@
     "drinksValue": "100",
     "totalValue": 400,
     "username": "test1"
+  },
+  {
+    "id": 2,
+    "dateValue": "2024-08-02",
+    "foodValue": "1",
+    "electronicsValue": "1",
+    "clothesValue": "1",
+    "drinksValue": "1",
+    "totalValue": 4,
+    "username": "test1"
+  },
+  {
+    "id": 3,
+    "dateValue": "2024-08-03",
+    "foodValue": "2",
+    "electronicsValue": "2",
+    "clothesValue": "2",
+    "drinksValue": "2",
+    "totalValue": 8,
+    "username": "test1"
+  },
+  {
+    "id": 0,
+    "dateValue": "2024-08-04",
+    "foodValue": "5",
+    "electronicsValue": "5",
+    "clothesValue": "5",
+    "drinksValue": "5",
+    "totalValue": 20,
+    "username": "test1"
+  },
+  {
+    "id": 0,
+    "dateValue": "2024-08-06",
+    "foodValue": "6",
+    "electronicsValue": "6",
+    "clothesValue": "8",
+    "drinksValue": "7",
+    "totalValue": 27,
+    "username": "test1"
+  },
+  {
+    "id": 0,
+    "dateValue": "2024-08-05",
+    "foodValue": "5",
+    "electronicsValue": "5",
+    "clothesValue": "5",
+    "drinksValue": "5",
+    "totalValue": 20,
+    "username": "test1"
+  },
+  {
+    "id": 4,
+    "dateValue": "2024-08-07",
+    "foodValue": "7",
+    "electronicsValue": "7",
+    "clothesValue": "7",
+    "drinksValue": "7",
+    "totalValue": 28,
+    "username": "test1"
   }
 ]

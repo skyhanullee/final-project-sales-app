@@ -21,15 +21,15 @@ const getDailySales = async () => {
 
     const userSales = dailySales.filter(sale => sale.userId === userId);
 
-    return { dailySales: userSales };
+    return userSales;
   } catch (e) {
     console.log("Error loading daily sales: ", e);
-    return { dailySales: [] };
+    return [];
   }
 };
 
 export default async function History() {
-  const { dailySales } = await getDailySales();
+  const dailySales = await getDailySales();
 
   if (dailySales.length === 0) {
     return (

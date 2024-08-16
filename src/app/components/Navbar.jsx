@@ -10,8 +10,14 @@ export default function Navbar() {
       <Link href="/history">
         History
       </Link>
+      <Link href="/images">
+        Images
+      </Link>
       <Link href="/createdailysales">
         New Sales
+      </Link>
+      <Link href="/createimage">
+        New Image
       </Link>
       <Link href="/help">
         Help
